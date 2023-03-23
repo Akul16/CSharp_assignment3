@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Assignment3.Models.Teacher>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Teachers List Page</h2>
+
+<div class="row">
+    <form action="/Teacher/List" method="GET">
+        <input type="text" name="SearchKey" autocomplete="off" />
+        <input type="submit" value="Search" />
+    </form>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Employee Number</th>
+                    <th>Teacher First Name</th>
+                    <th>Teacher Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int i = 1;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.EmployeeNumber</td>
+                        <td>@item.TeacherFName</td>
+                        <td>@item.TeacherLName</td>
+                        <td>
+                            @Html.ActionLink("Show", "Show", new { id = @item.TeacherId }, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
+
+                    i++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    table {
+        width: 100%;
+    }
+
+    thead, tbody, tfoot, tr, td, th {
+        border-width: 1px;
+        padding: 0.25em;
+    }
+</style>
